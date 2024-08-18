@@ -1,0 +1,48 @@
+.form-container {
+    border-radius: .3rem;
+    overflow: hidden;
+    box-shadow: .3rem .3rem 2rem var(--shadow);
+    max-width: 26rem;
+    width: 100%;
+}
+
+.form {
+    padding: 1.6rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    background-color: var(--color-gray_lighter);
+    grid-gap: 1rem;
+}
+
+.form-group {
+    display: grid;
+    gap: .3rem;
+}
+
+.form-heading,
+.form-action {
+    grid-column: 1 / -1;
+}
+
+.form-input {
+    padding: .6rem 1rem;
+    border: none;
+    outline: none;
+    background-color: var(--color-gray_light);
+    border-radius: .3rem;
+    font-weight: bold;
+    color: var(--color-gray_dark);
+    width: 100%;
+}
+
+@media only screen and (max-width: 80rem) {
+    .form-container {
+        /* width: 50%; */
+    }
+}
+
+@media only screen and (max-width: 60rem) {}
+
+@media only screen and (max-width: 40rem) {}
+
+@media only screen and (max-width: 20rem) {}
