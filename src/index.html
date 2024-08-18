@@ -13,40 +13,35 @@
     <div class="form-container">
       <h1 class="heading-1">Lift Simulation</h1>
       <section class="form" name="form">
-        <p class="form-heading">Set Uper and lower bounds</p>
-        <div class="form-group">
-          <label for="min" class="form-label">
-            min:
-          </label>
-          <input type="number" class="form-input" name="min" id="min" min="1" value="1" placeholder="minimum">
-        </div>
-        <div class="form-group">
+        <div class="form-group col-span-all">
           <label for="max" class="form-label">
-            max:
+            Upper bound:
           </label>
-          <input type="number" class="form-input" name="max" id="max" min="1" value="3" placeholder="maximum">
+          <input type="number" class="form-input" name="max" id="max" min="1" value="100" placeholder="maximum">
         </div>
         <p class="form-heading">Set Number of floors and lifts</p>
         <div class="form-group">
           <label for="floors" class="form-label">
             Floors:
           </label>
-          <input type="number" class="form-input" name="floors" id="floors" value="3"
-            placeholder="Floors...">
+          <input type="number" class="form-input" name="floors" id="floors" min="2" value="3" placeholder="Floors...">
         </div>
         <div class="form-group">
           <label for="lifts" class="form-label">
             Lifts:
           </label>
-          <input type="number" class="form-input" name="lifts" id="lifts" value="1"
-            placeholder="Lifts...">
+          <input type="number" class="form-input" name="lifts" id="lifts" min="1" value="1" placeholder="Lifts...">
         </div>
         <div class="form-group form-action">
-          <input type="submit" value="Submit" class="btn" onclick="initialize()">
+          <input type="submit" value="Submit" class="btn" id="submit">
         </div>
+        <p class="form-heading">
+          <strong>Note: </strong>
+          Minimum number of floors should be 2 and minimum number of lifts should be 1
+        </p>
       </section>
     </div>
-  
+
     <div id="building"></div>
 
   </main>

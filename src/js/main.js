@@ -2,6 +2,12 @@ let buildingState = {};
 let numFloors = 5;
 let numLifts = 1;
 
+document.getElementById("submit").addEventListener("click", (event) => {
+  event.preventDefault();
+  initialize();
+  console.log("called");
+});
+
 const directions = Object.freeze({
   Up: "up",
   Down: "down",
@@ -9,8 +15,8 @@ const directions = Object.freeze({
 
 const createButton = (dir, index) => {
   const buttonRef = document.createElement("div");
-  buttonRef.className = "floor-button";
-  buttonRef.innerText = dir;
+  buttonRef.className = "btn";
+  buttonRef.innerHTML = dir === directions.Up ? "&#11165;" : "&#11167;";
   buttonRef.addEventListener("click", () => callLift(index, dir));
   return buttonRef;
 };
@@ -74,16 +80,20 @@ function callLift(floorNumber, direction) {
     )
   )
     return;
-    
-  const liftsWithSameDirectionAndFloor = buildingState.liftState.filter(
-    (state) => state.pos === floorNumber && state.dir === direction
+
+  const liftsAtFloor = buildingState.liftState.filter(
+    (state) => state.pos === floorNumber
   ).length;
-  const liftsWithDiffDirectionAndFloor = buildingState.liftState.filter(
-    (state) => state.pos === floorNumber && state.dir != direction
-  ).length;
+
+  if (liftsAtFloor >= 2) return;
+
+  if (liftsAtFloor == 1 && buildingState.liftState.length == 1) return;
+
   if (
-    liftsWithDiffDirectionAndFloor >= 2 ||
-    liftsWithSameDirectionAndFloor >= 1
+    liftsAtFloor == 1 &&
+    buildingState.liftState.some(
+      (state) => state.pos === floorNumber && state.dir === direction
+    )
   )
     return;
 
