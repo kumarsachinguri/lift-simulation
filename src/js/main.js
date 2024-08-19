@@ -167,11 +167,13 @@ function processLifts() {
   const distance = Math.abs(currentLiftPosition - floorNumber);
   const travelTime = distance * 2000;
 
+  
   buildingState.liftState[availableLiftIndex].busy = true;
   buildingState.liftState[availableLiftIndex].pos = floorNumber;
   buildingState.liftState[availableLiftIndex].dir = direction;
-
+  
   liftElement.style.transform = `translateY(-${floorNumber * 120}px)`;
+  liftElement.style.transition = `${travelTime / 1000}s`;
 
   setTimeout(() => {
     openAndCloseDoors(availableLiftIndex, floorNumber);

@@ -28,7 +28,6 @@
   flex-shrink: 0;
   position: relative;
   background-color: gray;
-  transition: transform 2s;
 }
 
 .open::before,
