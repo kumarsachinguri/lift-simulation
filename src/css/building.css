@@ -27,7 +27,16 @@
   height: 100px;
   flex-shrink: 0;
   position: relative;
-  background-color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-gray_dark);
+}
+
+.lift-door {
+  width: 50%;
+  height: 100px;
+  background-color: var(--color-gray);
 }
 
 .open::before,
@@ -62,4 +71,16 @@
   color: red;
   font-size: 0.675rem;
   display: none;
+}
+
+@keyframes doorAnimation {
+  0% {
+    width: 50%;
+  }
+  50% {
+    width: 0%;
+  }
+  100% {
+    width: 50%;
+  }
 }

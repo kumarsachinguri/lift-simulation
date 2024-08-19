@@ -70,6 +70,7 @@ const createLifts = (floorRef) => {
     const lift = document.createElement("div");
     lift.className = "lift";
     lift.id = `lift-${j}`;
+    lift.innerHTML = `<div id="door-left-${j}" class="lift-door"></div><div id="door-right-${j}" class="lift-door"></div>`;
     floorRef.appendChild(lift);
   }
 };
@@ -122,6 +123,8 @@ function initialize() {
 }
 
 function callLift(floorNumber, direction) {
+  console.log(buildingState.calls)
+  // console.log(buildingState.)
   if (
     buildingState.calls.some(
       (call) => call.floorNumber === floorNumber && call.direction === direction
@@ -133,17 +136,25 @@ function callLift(floorNumber, direction) {
     (state) => state.pos === floorNumber
   ).length;
 
-  if (liftsAtFloor >= 2) return;
-
-  if (liftsAtFloor == 1 && buildingState.liftState.length == 1) return;
+  if (liftsAtFloor >= 2) {
+    // openAndCloseDoors(buildingState.liftState.findIndex(state => state.pos == floorNumber))
+    return;
+  }
+  
+  if (liftsAtFloor == 1 && buildingState.liftState.length == 1) {
+    // openAndCloseDoors(buildingState.liftState.findIndex(state => state.pos == floorNumber))
+    return;
+  }
 
   if (
     liftsAtFloor == 1 &&
     buildingState.liftState.some(
       (state) => state.pos === floorNumber && state.dir === direction
     )
-  )
+  ){
+    // openAndCloseDoors(buildingState.liftState.findIndex(state => state.pos == floorNumber))
     return;
+  }
 
   buildingState.calls.push({ floorNumber, direction });
   processLifts();
@@ -176,7 +187,7 @@ function processLifts() {
   liftElement.style.transition = `${travelTime / 1000}s`;
 
   setTimeout(() => {
-    openAndCloseDoors(availableLiftIndex, floorNumber);
+    openAndCloseDoors(availableLiftIndex);
   }, travelTime);
 }
 
@@ -197,10 +208,14 @@ function findAvailableLift(floorNumber, direction) {
   return availableLiftIndex;
 }
 
-function openAndCloseDoors(liftIndex, floorNumber) {
-  const liftElement = document.getElementById(`lift-${liftIndex}`);
+function openAndCloseDoors(liftIndex) {
 
+  document.getElementById(`door-left-${liftIndex}`).style.animation = 'doorAnimation 2.5s';
+  document.getElementById(`door-right-${liftIndex}`).style.animation = 'doorAnimation 2.5s';
+  
   setTimeout(() => {
+    document.getElementById(`door-left-${liftIndex}`).style.animation = '';
+    document.getElementById(`door-right-${liftIndex}`).style.animation = '';
     buildingState.liftState[liftIndex].busy = false;
     buildingState.liftState[liftIndex].dir = null;
     processLifts();
