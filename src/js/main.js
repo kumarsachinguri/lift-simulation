@@ -75,12 +75,16 @@ const createLifts = (floorRef) => {
 };
 
 const generateFloor = (buildingRef) => {
-  for (let i = 0; i < numFloors; i++) {
+  for (let i = numFloors - 1; i >=0; i--) {
     const floorRef = document.createElement("div");
     floorRef.className = "floor";
     floorRef.id = `floor-${i}`;
 
     const buttons = document.createElement("div");
+    const floorCount = document.createElement('div');
+    floorCount.innerHTML = `<h3>${i}</h3>`;
+    floorRef.appendChild(floorCount);
+
     buttons.className = "floor-buttons";
 
     if (i !== numFloors - 1)
@@ -192,7 +196,6 @@ function findAvailableLift(floorNumber, direction) {
 }
 
 function openAndCloseDoors(liftIndex, floorNumber) {
-  console.log(buildingState);
   const liftElement = document.getElementById(`lift-${liftIndex}`);
 
   setTimeout(() => {
