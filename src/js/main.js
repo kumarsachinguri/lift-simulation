@@ -2,10 +2,54 @@ let buildingState = {};
 let numFloors = 5;
 let numLifts = 1;
 
+document.getElementById("floors").addEventListener("input", (event) => {
+  let maxLimit = parseInt(document.getElementById("max").value);
+  if (maxLimit < 2) {
+    document.getElementById("max-error").style.display == "block";
+  } else {
+    document.getElementById("max-error").style.display == "none";
+  }
+  value = parseInt(event.target.value);
+  if (value > maxLimit) {
+    document.getElementById("max-floor").style.display = "block";
+  } else if (value < 2) {
+    document.getElementById("min-floor").style.display = "block";
+  } else {
+    document.getElementById("max-floor").style.display = "none";
+    document.getElementById("min-floor").style.display = "none";
+  }
+});
+document.getElementById("lifts").addEventListener("input", (event) => {
+  let maxLimit = parseInt(document.getElementById("max").value);
+  if (maxLimit < 2) {
+    document.getElementById("max-error").style.display == "block";
+  } else {
+    document.getElementById("max-error").style.display == "none";
+  }
+  value = parseInt(event.target.value);
+  if (value > maxLimit) {
+    document.getElementById("max-lift").style.display = "block";
+  } else if (value < 1) {
+    document.getElementById("min-lift").style.display = "block";
+  } else {
+    document.getElementById("max-lift").style.display = "none";
+    document.getElementById("min-lift").style.display = "none";
+  }
+});
+
 document.getElementById("submit").addEventListener("click", (event) => {
   event.preventDefault();
+  let maxLimit = parseInt(document.getElementById("max").value);
+  let totalFloors = parseInt(document.getElementById("floors").value);
+  let totalLifts = parseInt(document.getElementById("lifts").value);
+  if (
+    totalFloors > maxLimit ||
+    totalLifts > maxLimit ||
+    totalFloors < 2 ||
+    totalLifts < 1
+  )
+    return;
   initialize();
-  console.log("called");
 });
 
 const directions = Object.freeze({

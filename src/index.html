@@ -17,7 +17,10 @@
           <label for="max" class="form-label">
             Upper bound:
           </label>
-          <input type="number" class="form-input" name="max" id="max" min="1" value="100" placeholder="maximum">
+          <input type="number" class="form-input" name="max" id="max" min="2" value="100" placeholder="maximum">
+          <p id="max-error">
+            The upper bound should at least 2!
+          </p>
         </div>
         <p class="form-heading">Set Number of floors and lifts</p>
         <div class="form-group">
@@ -25,12 +28,24 @@
             Floors:
           </label>
           <input type="number" class="form-input" name="floors" id="floors" min="2" value="3" placeholder="Floors...">
+          <p id="max-floor">
+            Value should not be less then Upper bound!
+          </p>
+          <p id="min-floor">
+            There should be at least 2 Floors!
+          </p>
         </div>
         <div class="form-group">
           <label for="lifts" class="form-label">
             Lifts:
           </label>
           <input type="number" class="form-input" name="lifts" id="lifts" min="1" value="1" placeholder="Lifts...">
+          <p id="max-lift">
+            Value should not be less then Upper bound!
+          </p>
+          <p id="min-lift">
+            There should be at least 1 Lift!
+          </p>
         </div>
         <div class="form-group form-action">
           <input type="submit" value="Submit" class="btn" id="submit">
